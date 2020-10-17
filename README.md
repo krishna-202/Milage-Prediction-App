@@ -14,9 +14,9 @@
 
 7. Create a tepmlates folder in Milage_Prediction_Website project folder(Top level directory).
 
-8. Copy index.html file from which you have downloaded templates folder.
+8. Copy index.html file from which you have downloaded and paste it in templates folder.
 
-9. Go to urls.py file and include below code
+9. Go to urls.py file and write below code.
 ```from django.contrib import admin
 from django.urls import path,include
 
@@ -27,7 +27,7 @@ urlpatterns = [
 
 ```
 
-10. Create a another urls.py file in Milage_Prediction_App folder and include below code
+10. Create a another urls.py file in Milage_Prediction_App folder and write a below code.
  ```
  from django.urls import path
  from . import views
@@ -38,19 +38,47 @@ urlpatterns = [
 
 ```
 
-11. Now Go to views.py file and create below code
+11. Now Go to views.py file and write a below code.
 ```
 def index(request):
     return render(request,'index.html')
 
 ```
 
-12. Go to settings.py file create a Templates directory and include directory in TEMPLATES list
+12. Go to settings.py file create a Templates directory as TEMPLATES_DIR and include that in DIRS list.
 ```
 TEMPLATES_DIR=os.path.join(BASE_DIR,"templates")
 'DIRS': [TEMPLATES_DIR],
 ```
 
 13. Add a App name in INSTALLED_APPS.
+```
+INSTALLED_APPS = ['Milage_Prediction_App'],
+
+```
 
 14. Run the server and see.
+
+15. we can see some pictures are not displaying.
+
+16. We have to add All static files from which we have downloaded (colorlib templates)
+
+17. create a static folder in top level directory.
+
+18. Go to settings.py file and add staticfiles directory as STATICFILES_DIRS below STATIC_URL.
+```
+STATIC_URL = '/static/'
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,'static')
+    ]
+
+```
+19. Go to index.html file and in first line load static files and replace all href path with jinga format as shown below.
+```
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+src="{% static 'img/logo.png' %}
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+```
+
+20. Run the server and boom!!!
