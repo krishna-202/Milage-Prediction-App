@@ -82,3 +82,9 @@ src="{% static 'img/logo.png' %}
 ```
 
 20. Run the server and boom!!!
+
+21. Remove all unwanted texts, images and replace menu buttons with required features you want.
+
+22. I will be adding Home, Register, Login menu.
+
+23. Run the server and see Whether changes are reflected or not. 
