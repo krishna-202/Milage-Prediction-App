@@ -104,3 +104,7 @@ src="{% static 'img/logo.png' %}
 24. Now i will be jumping to build a machine learning model.
 
 25. create a machine learning model in jupyter notebook and pickle it.
+
+26. place the model in models folder.
+
+27. Lets create a page for inputs to be given for model.
