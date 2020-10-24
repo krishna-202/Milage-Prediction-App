@@ -1,5 +1,17 @@
 ## Milage-Prediction-App
 
+##Installation of Django
+
+* Install python
+* Go to command prompt type python --version
+* Check the version of pip by typing pip --version
+* install virtual environment wrapper pip install virtualenvwrapper-win
+* create virtual env by typing mkvirtualenv MyDjangoEnv(any name).
+* install django in this environment pip install django
+* check the version django-admin --version
+* Whenever want to work on Django just activate it by typing activate MyDjangoEnv
+
+
 1. Create a Django project using Django-admin startproject Milage_Prediction_Website using command prompt.
 
 2. Go to project directory and create a app using Django-admin startapp Milage_Prediction_App.
@@ -87,4 +99,8 @@ src="{% static 'img/logo.png' %}
 
 22. I will be adding Home, Register, Login menu.
 
-23. Run the server and see Whether changes are reflected or not. 
+23. Run the server and see Whether changes are reflected or not.
+
+24. Now i will be jumping to build a machine learning model.
+
+25. create a machine learning model in jupyter notebook and pickle it.
