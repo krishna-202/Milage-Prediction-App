@@ -108,3 +108,53 @@ src="{% static 'img/logo.png' %}
 26. place the model in models folder.
 
 27. Lets create a page for inputs to be given for model.
+
+28. predict_milage.html is input form for milage prediction model.
+
+29. predicted_milage.html is the page for predicted Milage.
+
+30. Go to views.py write a logic for model to predict.
+
+##Database connectivity
+
+1. Go to models.py create a table with ORM (object relational mapping) concept.
+
+```
+class MilagePredictionModel(models.Model):
+    cylinders=models.IntegerField()
+    displacement=models.IntegerField()
+    horsepower=models.IntegerField()
+    weight=models.IntegerField()
+    acceleration=models.IntegerField()
+    model_year=models.IntegerField()
+    origin=models.IntegerField()
+    predicted_value=models.IntegerField(default=18)
+```
+
+2. Register the table in admin.py file.
+
+```
+from .models import MilagePredictionModel
+
+# Register your models here.
+
+admin.site.register(MilagePredictionModel)
+
+```
+
+3. Make the certain changes in views.py file. Refer views.py file for code.
+
+4. create superuser for admin page to login. you will get all the information on Database.
+```
+python manage.py createsuperuser
+```
+
+5. create a migrations file to create a databse.
+
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+6. go to /admin file and check for the Database.
+
+7. You will see the recoreds in database.
