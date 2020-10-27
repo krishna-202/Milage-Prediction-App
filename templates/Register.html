@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="AutoMotive Template">
+    <meta name="keywords" content="AutoMotive, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+</head>
+
+<body>
+
+   <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <ul class="offcanvas__widget">
+            <li><a href="#" class="search-switch"><span class="icon_search"></span></a></li>
+            <li><a href="#"><span class="icon_cart_alt"></span></a></li>
+        </ul>
+        <div class="offcanvas__logo">
+            <a href="./index.html"><img src="{% static 'img/logo.png' %}" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <ul class="offcanvas__date">
+            <li><span class="icon_mobile"></span> (+123) 4567-7890-123</li>
+            <li><span class="icon_clock_alt"></span> Mon-Sat: 10:00 - 16:00 / Sunday Close</li>
+        </ul>
+        <div class="offcanvas__social">
+            <a href="#" class="map-btn">Find us on map <span class="arrow_right"></span></a>
+            <div class="header__right__social">
+                <a href="#"><span class="social_facebook"></span></a>
+                <a href="#"><span class="social_twitter"></span></a>
+                <a href="#"><span class="social_vimeo"></span></a>
+                <a href="#"><span class="social_pinterest"></span></a>
+            </div>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <ul class="header__top__left">
+                            <li><span class="icon_mobile"></span> (+123) 4567-7890-123</li>
+                            <li><span class="icon_clock_alt"></span> Mon-Sat: 10:00 - 16:00 / Sunday Close</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="header__top__right">
+                            <a href="#" class="map-btn">Find us on map <span class="arrow_right"></span></a>
+                            <div class="header__right__social">
+                                <a href="#"><span class="social_facebook"></span></a>
+                                <a href="#"><span class="social_twitter"></span></a>
+                                <a href="#"><span class="social_vimeo"></span></a>
+                                <a href="#"><span class="social_pinterest"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="header__logo">
+                        <a href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <nav class="header__menu">
+                        <ul>
+                            <li><a href="./index.html">Home</a></li>
+                            <li><a href="./services.html">Services</a></li>
+                            <li><a href="./shop.html">Shop</a></li>
+                            <li><a href="#">Pages</a>
+                                <ul class="dropdown">
+                                    <li><a href="./about.html">About Us</a></li>
+                                    <li><a href="./services-details.html">Services Details</a></li>
+                                    <li><a href="./shop-details.html">Shop Details</a></li>
+                                    <li><a href="./blog-details.html">Blog Details</a></li>
+                                    <li><a href="./contact.html">Contact</a></li>
+                                </ul>
+                            </li>
+                            <li class="active"><a href="./blog.html">Blog</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-2">
+                    <ul class="header__right">
+                        <li><a href="#" class="search-switch"><span class="icon_search"></span></a></li>
+                        <li><a href="#"><span class="icon_cart_alt"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="canvas__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Map Begin -->
+
+    <!-- Map End -->
+
+    <!-- Contact Section Begin -->
+    <section class="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="contact__content">
+                        <div class="section-title">
+                          {% if registered %}
+                          <h2>Thanks for Registering!</h2>
+                          <br>
+                          <a href="{% url 'index' %}">
+                          <input type="button" class="site-btn" name="Back" value="back">
+                          </a>
+                          {% else %}
+                            <h2>Please Fill the Registration Form!</h2>
+
+                        </div>
+
+                        <form enctype="multipart/form-data" action="" method="post">
+
+                          {% csrf_token %}
+
+                            <div class="input__item">
+
+                                <input placeholder="First Name" name="first_name" type="text" required>
+                            </div>
+                            <div class="input__item">
+
+                                <input placeholder="Last Name" name="last_name" type="text" required>
+                            </div>
+
+                            <div class="input__item">
+
+                                <input placeholder="username" name="username" type="text" required>
+                            </div>
+                            <div class="input__item">
+
+                                <input placeholder="Email" name="email" type="email" required>
+                            </div>
+                            <div class="input__item">
+
+                                <input placeholder="Password" name="password1" type="password" required>
+                            </div>
+                            <div class="input__item">
+
+                                <input placeholder="Confirm Password" name="password2" type="password" required>
+                            </div>
+
+                            <div class="input__item">
+
+                                <input placeholder="Portfolio" name="portfolio" type="url" required>
+                            </div>
+
+                            <div class="input__item">
+                                <p>Profile Pic</p>
+                                <input type="file" name="profile_pic">
+                            </div>
+
+                            <button type="submit" class="site-btn">Submit</button>
+                        </form>
+                        {% endif %}
+
+                        {% for message in messages %}
+                        <h3>{{ message }}</h3>
+                        {% endfor %}
+
+                  </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section End -->
+
+    <!-- Footer Section Begin -->
+
+    <div class="footer__copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <div class="footer__copyright__text">
+                        <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+                    </div>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </div>
+                <div class="col-md-4">
+                    <div class="footer__copyright__social">
+                        <a href="#"><span class="social_facebook"></span></a>
+                        <a href="#" class="twitter"><span class="social_twitter"></span></a>
+                        <a href="#" class="vimeo"><span class="social_vimeo"></span></a>
+                        <a href="#" class="pinterest"><span class="social_pinterest"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+    <!-- Js Plugins -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

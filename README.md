@@ -4,7 +4,7 @@
 
 * Install python
 * Go to command prompt type python --version
-* Check the version of pip by typing pip --version
+* Check the version of pip by typing pip --version.
 * install virtual environment wrapper pip install virtualenvwrapper-win
 * create virtual env by typing mkvirtualenv MyDjangoEnv(any name).
 * install django in this environment pip install django
