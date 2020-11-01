@@ -157,4 +157,147 @@ python manage.py migrate
 ```
 6. go to /admin file and check for the Database.
 
-7. You will see the recoreds in database.
+7. You will see the records in database.
+
+##Adding Register, Login, Logout features
+
+1. Let us create a model for user profiles
+
+2. We will use User inbuilt model for username and password and to extent other features will develop our model.
+
+3. We will use User as a one to one mapping for our own model
+
+4. Let us create a another app as accounts.
+
+5. create a model for accounts.
+
+```
+from django.db import models
+from django.contrib.auth.models import User
+
+# Create your models here.
+class UserProfile(models.Model):
+    user=models.OneToOneField(User,on_delete=models.CASCADE)
+    portfolio=models.URLField(blank=True)
+    profile_pic=models.ImageField(upload_to='profile_pic',blank=True)
+
+
+    def __str__(self):
+        return self.user.username
+```
+
+6. In above code we can see that we are using user object as one of the attribute for our UserProfile model. That user model is having all inbuilt attributes such as first_name,last_name,username,Email,password.
+
+7. Another thing we can see that we used image field and we are uploading it to profile_pic.
+
+8. Let us create profile_pic folder. And we should join this to base directory to find out path.
+
+```
+MEDIA_URL='/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+```
+
+9. add this static url patterns to original patterns.
+
+```
+urlpatterns=urlpatterns+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+```
+
+10. Go to index.html page create a tab for Register.
+
+11. create page for register form.
+
+12. create a view for register
+
+```
+def register(request):
+    registered=False
+    if request.method == 'POST':
+        first_name=request.POST['first_name']
+        last_name=request.POST['last_name']
+        username=request.POST['username']
+        email=request.POST['email']
+        password1=request.POST['password1']
+        password2=request.POST['password2']
+        portfolio=request.POST['portfolio']
+        profile_pic=request.FILES['profile_pic']
+
+
+        user=User()
+        user_profile=UserProfile()
+        if password1==password2:
+
+            if User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists():
+                messages.info(request,"username or email Aleady Exists")
+
+            else:
+                user=User.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password1)
+                user.save()
+                user_profile.portfolio=portfolio
+
+
+                user_profile.profile_pic=request.FILES['profile_pic']
+                user_profile.user=user
+                user_profile.save()
+                registered=True
+        else:
+            messages.info(request,"Password Mismatch!")
+
+
+
+    return render(request,'Register.html',{'registered':registered})
+```
+
+13. In register.html make below changes.
+```
+{% if registered %}
+<h2>Thanks for Registering!</h2>
+<br>
+<a href="{% url 'index' %}">
+<input type="button" class="site-btn" name="Back" value="back">
+</a>
+{% else %}
+  <h2>Please Fill the Registration Form!</h2>
+
+
+  {% for message in messages %}
+  <h3>{{ message }}</h3>
+  {% endfor %}
+```
+
+14. create a login form.
+
+15. create a login and logout features.
+
+```
+def login(request):
+    if request.method=='POST':
+        username=request.POST['username']
+        password=request.POST['password']
+
+        user=auth.authenticate(username=username,password=password)
+
+        if user is not None:
+            auth.login(request,user)
+            return redirect('/')
+        else:
+            messages.info(request,'invalid credentials!')
+
+
+    return render(request,'login.html')
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
+
+```
+
+16. In index.html make below changes.
+
+```
+{% if user.is_authenticated %}
+<li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+{% else %}
+<li><a href="{% url 'accounts:login' %}">Login</a></li>
+{% endif %}
+```

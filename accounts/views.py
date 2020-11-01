@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,auth
 from .models import UserProfile
 from django.contrib import messages
 # Create your views here.
@@ -23,7 +23,7 @@ def register(request):
 
             if User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists():
                 messages.info(request,"username or email Aleady Exists")
-                
+
             else:
                 user=User.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password1)
                 user.save()
@@ -40,3 +40,23 @@ def register(request):
 
 
     return render(request,'Register.html',{'registered':registered})
+
+def login(request):
+    if request.method=='POST':
+        username=request.POST['username']
+        password=request.POST['password']
+
+        user=auth.authenticate(username=username,password=password)
+
+        if user is not None:
+            auth.login(request,user)
+            return redirect('/')
+        else:
+            messages.info(request,'invalid credentials!')
+
+
+    return render(request,'login.html')
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
